@@ -9,16 +9,28 @@
 </head>
 
 <body>
-
-  <h1 class="heading">Admin</h1>
   <!-- Menu Section Starts -->
+  <div class="menu">
+    <div class="wrapper">
+    </div>
+  </div>
   <!-- Menu Section Ends -->
 
   <!-- Main Content Section Starts -->
+  <div class="main-content">
+    <div class="wrapper">
+      Main Content Goes Here
+    </div>
+  </div>
   <!-- Main Content Section Ends -->
 
 
   <!-- Footer Section Starts -->
+  <div class="footer">
+    <div class="wrapper">
+      <p class="text-center"><?= date("Y") ?> All rights reserved, Some Restaurant. Developed By - <a href="https://github.com/ritatanght"> Rita Tang </a></p>
+    </div>
+  </div>
   <!-- Footer Section Ends -->
 </body>
 

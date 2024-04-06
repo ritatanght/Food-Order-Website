@@ -15,6 +15,24 @@
   text-align: center;
 }
 
+/* Menu */
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  column-gap: 2em;
+  justify-content: center;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #ff6b81;
+}
+
+.menu ul li a:hover {
+  color: #ff4757;
+}
 
 /* Footer */
 .footer {

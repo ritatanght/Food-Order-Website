@@ -26,7 +26,28 @@
   <!-- Main Content Section Starts -->
   <div class="main-content">
     <div class="wrapper">
-      Main Content Goes Here
+      <h1>Dashboard</h1>
+      <div class="columns">
+
+
+        <div class="col-4 text-center">
+          <p class="value">5</p>
+          <p>Categories</p>
+        </div>
+        <div class="col-4 text-center">
+          <p class="value">5</p>
+          <p>Categories</p>
+        </div>
+        <div class="col-4 text-center">
+          <p class="value">5</p>
+          <p>Categories</p>
+        </div>
+        <div class="col-4 text-center">
+          <p class="value">5</p>
+          <p>Categories</p>
+        </div>
+      </div>
+
     </div>
   </div>
   <!-- Main Content Section Ends -->

@@ -13,11 +13,11 @@
   <nav class="menu">
     <div class="wrapper">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Admin</a></li>
-        <li><a href="#">Category</a></li>
-        <li><a href="#">Food</a></li>
-        <li><a href="#">Order</a></li>
+        <li><a href="/admin/index.php">Home</a></li>
+        <li><a href="/admin/manage-admin.php">Admin</a></li>
+        <li><a href="/admin/manage-category.php">Category</a></li>
+        <li><a href="/admin/manage-food.php">Food</a></li>
+        <li><a href="/admin/manage-order.php">Order</a></li>
       </ul>
     </div>
   </nav>

@@ -2,6 +2,12 @@
 <div class="main-content">
   <div class="wrapper">
     <h1>Add Admin</h1>
+
+    <?php if (isset($_SESSION['add'])) : ?>
+      <p class="flash-message"><?= $_SESSION['add'] ?></p>
+    <?php unset($_SESSION['add']);
+    endif ?>
+
     <form action="" method="POST">
       <table class="tbl-30">
         <tr>

@@ -3,7 +3,14 @@
 <div class="main-content">
   <div class="wrapper">
     <h1>Manage Admin</h1>
-    <br />
+
+    <?php if (isset($_SESSION['add'])) : ?>
+      <p class="flash-message"><?= $_SESSION['add'] ?></p>
+    <?php unset($_SESSION['add']);
+    else : ?>
+      <br />
+    <?php endif ?>
+
     <!-- Button to add Admin -->
     <a href="add-admin.php" class="btn-primary">Add Admin</a>
     <br />

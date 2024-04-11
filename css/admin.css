@@ -115,6 +115,10 @@ table tr td {
   margin-bottom: 0.5em;
 }
 
+p.flash-message {
+  margin-block: 1.5em;
+}
+
 /* Footer */
 .footer {
   background-color: #ff4757;

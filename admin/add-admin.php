@@ -30,3 +30,28 @@
   </div>
 </div>
 <?php include './partials/footer.php' ?>
+
+
+<?php
+// Process the form and save it in database
+
+// Check whether the form is submitted
+if (isset($_POST['submit'])) {
+
+  // get data from form
+  $full_name = $_POST['full_name'];
+  $username = $_POST['username'];
+  $password = md5($_POST['password']); // password encrytion with MD5
+
+
+  // execute query and save into database
+  $stmt = $conn->prepare('INSERT INTO tbl_admin (full_name, username, password) VALUES (?,?,?)');
+  $res = $stmt->execute([$full_name, $username, $password]);
+
+  if ($res) {
+    // success
+  } else {
+    // failure
+  }
+}
+?>

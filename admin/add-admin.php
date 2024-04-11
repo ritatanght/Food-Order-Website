@@ -43,15 +43,20 @@ if (isset($_POST['submit'])) {
   $username = $_POST['username'];
   $password = md5($_POST['password']); // password encrytion with MD5
 
-
   // execute query and save into database
   $stmt = $conn->prepare('INSERT INTO tbl_admin (full_name, username, password) VALUES (?,?,?)');
   $res = $stmt->execute([$full_name, $username, $password]);
 
   if ($res) {
     // success
+    $_SESSION['add'] = "Admin Added Successfully";
+    // Redirect to Manage Admin
+    header("location: /admin/manage-admin.php");
   } else {
     // failure
+    $_SESSION['add'] = "Failed to Add Admin";
+    // Redirect to Add Admin
+    header("location: /admin/add-admin.php");
   }
 }
 ?>

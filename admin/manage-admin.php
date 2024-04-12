@@ -22,31 +22,34 @@
         <th>Username</th>
         <th>Actions</th>
       </tr>
-      <tr>
-        <td>1. </td>
-        <td>Vijay Thapa</td>
-        <td>vijaythapa</td>
-        <td>
-          <a href="#" class="btn-secondary"> Update Admin</a>
-          <a href="#" class="btn-danger">Delete Admin</a>
-        </td>
-      <tr>
-        <td>2. </td>
-        <td>Vijay Thapa</td>
-        <td>vijaythapa</td>
-        <td>
-          <a href="#" class="btn-secondary"> Update Admin</a>
-          <a href="#" class="btn-danger">Delete Admin</a>
-        </td>
-      <tr>
-        <td>3. </td>
-        <td>Vijay Thapa</td>
-        <td>vijaythapa</td>
-        <td>
-          <a href="#" class="btn-secondary"> Update Admin</a>
-          <a href="#" class="btn-danger">Delete Admin</a>
-        </td>
-      </tr>
+
+      <?php
+
+      $res = $conn->query("SELECT * FROM tbl_admin");
+      if ($res) {
+        $count = mysqli_num_rows($res);
+        $sn = 1;
+        // display the list of admins when count returned from query > 0
+        if ($count > 0) {
+          while ($rows = mysqli_fetch_assoc($res)) {
+            // create variables from the associative array
+            extract($rows);
+      ?>
+            <tr>
+              <td><?= $sn++ ?>. </td>
+              <td><?= $full_name ?></td>
+              <td><?= $username ?></td>
+              <td>
+                <a href="#" class="btn-secondary"> Update Admin</a>
+                <a href="#" class="btn-danger">Delete Admin</a>
+              </td>
+            <tr>
+
+        <?php
+          }
+        }
+      }
+        ?>
     </table>
   </div>
 </div>

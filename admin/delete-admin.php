@@ -10,9 +10,9 @@ $res = $stmt->execute([$id]);
 
 // Redirect to manage-admin page with message (success/error)
 if ($res) {
-  $_SESSION['delete'] = "Admin Deleted Successfully";
+  $_SESSION['delete'] = "<p class='flash-message success'>Admin Deleted Successfully</p>";
   header("location: /admin/manage-admin.php");
 } else {
-  $_SESSION['delete'] = "Failed to Delete Admin. Try Again Later.";
+  $_SESSION['delete'] = "<p class='flash-message error'>Failed to Delete Admin. Try Again Later.</p>";
   header("location: /admin/manage-admin.php");
 }

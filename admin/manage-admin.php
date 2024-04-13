@@ -8,7 +8,7 @@
       <p class="flash-message"><?= $_SESSION['add'] ?></p>
     <?php unset($_SESSION['add']);
     elseif (isset($_SESSION['delete'])) : ?>
-      <p class="flash-message"><?= $_SESSION['delete'] ?></p>
+      <?= $_SESSION['delete'] ?>
     <?php unset($_SESSION['delete']);
     else : ?>
       <br />

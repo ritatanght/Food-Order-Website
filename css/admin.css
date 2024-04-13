@@ -119,6 +119,14 @@ p.flash-message {
   margin-block: 1.5em;
 }
 
+.success {
+  color: #2ed573;
+}
+
+.error {
+  color: #ff4757;
+}
+
 /* Footer */
 .footer {
   background-color: #ff4757;

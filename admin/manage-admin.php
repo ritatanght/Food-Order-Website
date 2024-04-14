@@ -43,7 +43,7 @@
               <td><?= $full_name ?></td>
               <td><?= $username ?></td>
               <td>
-                <a href="#" class="btn-secondary">Update Admin</a>
+                <a href="<?= "/admin/update-admin.php?id={$id}" ?>" class="btn-secondary">Update Admin</a>
                 <a href="<?= "/admin/delete-admin.php?id={$id}" ?>" class="btn-danger">Delete Admin</a>
               </td>
             <tr>

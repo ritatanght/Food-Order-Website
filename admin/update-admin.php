@@ -37,6 +37,7 @@
         </tr>
         <tr>
           <td colspan="2">
+            <input type="hidden" name="id" value="<?= $id ?>" />
             <input type="submit" name="submit" value="Update Admin" class="btn-secondary" />
           </td>
 
@@ -48,3 +49,27 @@
 
 
 <?php include './partials/footer.php' ?>
+
+<?php
+// check whether the submit button is clicked
+if (isset($_POST['submit'])) {
+  $id = $_POST['id'];
+  $full_name = $_POST['full_name'];
+  $username = $_POST['username'];
+
+  $res = $conn->execute_query("
+  UPDATE tbl_admin SET 
+  full_name = ?, 
+  username = ? 
+  WHERE id = ?
+  ", [$full_name, $username, $id]);
+
+  if ($res) {
+    $_SESSION['update'] = "<p class='flash-message success'>Admin Updated Successfully</p>";
+    header("location: /admin/manage-admin.php");
+  } else {
+    $_SESSION['update'] = "<p class='flash-message error'>Failed to Delete Admin</p>";
+    header("location: /admin/manage-admin.php");
+  }
+}
+?>

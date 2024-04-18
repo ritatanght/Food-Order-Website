@@ -10,6 +10,9 @@
     elseif (isset($_SESSION['delete'])) : ?>
       <?= $_SESSION['delete'] ?>
     <?php unset($_SESSION['delete']);
+    elseif (isset($_SESSION['update'])) : ?>
+      <?= $_SESSION['update'] ?>
+    <?php unset($_SESSION['update']);
     else : ?>
       <br />
     <?php endif ?>

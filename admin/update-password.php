@@ -44,6 +44,7 @@
 
 <?php
 if (isset($_POST['submit'])) {
+
   $id = $_POST['id'];
   $current_password = md5($_POST['current_password']);
   $new_password = md5($_POST['new_password']);
@@ -56,7 +57,27 @@ if (isset($_POST['submit'])) {
   if ($res) {
     $count = mysqli_num_rows($res);
     if ($count == 1) {
-      echo "admin found";
+
+      if ($new_password == $confirm_password) {
+        //update the password
+        $res = $conn->execute_query("UPDATE tbl_admin SET password = ? WHERE id= ?", [$new_password, $id]);
+        if ($res) {
+
+          $_SESSION['change-pwd'] =
+            "<p class='flash-message success'>Password changed successfully</p>";
+          return header("location: /admin/manage-admin.php");
+        } else {
+
+          $_SESSION['change-pwd'] =
+            "<p class='flash-message error'>Failed to change password</p>";
+          return header("location: /admin/manage-admin.php");
+        }
+      } else {
+        $_SESSION['pwd-not-match'] =
+          "<p class='flash-message error'>Password did not match</p>";
+
+        return header("location: /admin/manage-admin.php");
+      }
     } else {
       $_SESSION['admin-not-found'] =
         "<p class='flash-message error'>Admin Not Found</p>";
@@ -65,4 +86,3 @@ if (isset($_POST['submit'])) {
   }
 }
 ?>
-

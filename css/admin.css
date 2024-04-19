@@ -132,3 +132,16 @@ p.flash-message {
   background-color: #ff4757;
   color: #fff;
 }
+
+/* Login */
+.login {
+  border: 1px solid grey;
+  width: 30%;
+  margin: 12em auto;
+  padding: 2em;
+}
+
+label {
+  display: block;
+  margin-block: 1em;
+}

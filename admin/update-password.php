@@ -41,3 +41,28 @@
 </div>
 
 <?php include './partials/footer.php' ?>
+
+<?php
+if (isset($_POST['submit'])) {
+  $id = $_POST['id'];
+  $current_password = md5($_POST['current_password']);
+  $new_password = md5($_POST['new_password']);
+  $confirm_password = md5($_POST['confirm_password']);
+
+  $res = $conn->execute_query("
+  SELECT * FROM tbl_admin WHERE id = ? AND password = ?
+  ", [$id, $current_password]);
+
+  if ($res) {
+    $count = mysqli_num_rows($res);
+    if ($count == 1) {
+      echo "admin found";
+    } else {
+      $_SESSION['admin-not-found'] =
+        "<p class='flash-message error'>Admin Not Found</p>";
+      return header("location: /admin/manage-admin.php");
+    }
+  }
+}
+?>
+

@@ -13,6 +13,9 @@
     elseif (isset($_SESSION['update'])) : ?>
       <?= $_SESSION['update'] ?>
     <?php unset($_SESSION['update']);
+    elseif (isset($_SESSION['admin-not-found'])) : ?>
+      <?= $_SESSION['admin-not-found'] ?>
+    <?php unset($_SESSION['admin-not-found']);
     else : ?>
       <br />
     <?php endif ?>

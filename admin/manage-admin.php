@@ -16,6 +16,12 @@
     elseif (isset($_SESSION['admin-not-found'])) : ?>
       <?= $_SESSION['admin-not-found'] ?>
     <?php unset($_SESSION['admin-not-found']);
+    elseif (isset($_SESSION['pwd-not-match'])) : ?>
+      <?= $_SESSION['pwd-not-match'] ?>
+    <?php unset($_SESSION['pwd-not-match']);
+    elseif (isset($_SESSION['change-pwd'])) : ?>
+      <?= $_SESSION['change-pwd'] ?>
+    <?php unset($_SESSION['change-pwd']);
     else : ?>
       <br />
     <?php endif ?>

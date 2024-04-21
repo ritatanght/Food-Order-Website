@@ -12,7 +12,13 @@
 
   <div class="text-center login">
     <h1>Login</h1>
- 
+
+    <?php if (isset($_SESSION['login'])) {
+      echo $_SESSION['login'];
+      unset($_SESSION['login']);
+    }
+    ?>
+
     <form action="" method="POST">
       <label>
         Username:

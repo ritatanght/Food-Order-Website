@@ -12,6 +12,7 @@
 
   <div class="text-center login">
     <h1>Login</h1>
+ 
     <form action="" method="POST">
       <label>
         Username:
@@ -25,9 +26,35 @@
 
       <input type="submit" name="submit" value="Login" class="btn-primary" />
     </form>
-    <p class=" text-center">Creatd By - <a href="https://github.com/ritatanght">Rita Tang</a></p>
+    <br />
+    <p class="text-center">Creatd By - <a href="https://github.com/ritatanght">Rita Tang</a></p>
   </div>
 
 </body>
 
 </html>
+
+<?php
+include("../config/constants.php");
+
+if (isset($_POST['submit'])) {
+  $username = $_POST['username'];
+  $password = md5($_POST['password']);
+
+  $res = $conn->execute_query("
+  SELECT * FROM tbl_admin  
+  WHERE username = ? AND password = ?
+  ", [$username, $password]);
+
+  $count = mysqli_num_rows($res);
+
+  if ($count == 1) {
+    $_SESSION['login'] = "<p class='flash-message success'>Login Successful</p>";
+    header("location: /admin/");
+  } else {
+    $_SESSION['login'] = "<p class='flash-message error'>User or Password did not match</p>";
+    header("location: /admin/login.php");
+  }
+}
+
+?>

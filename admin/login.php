@@ -1,3 +1,5 @@
+<?php require "../config/constants.php" ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,9 +15,15 @@
   <div class="text-center login">
     <h1>Login</h1>
 
-    <?php if (isset($_SESSION['login'])) {
+    <?php
+    if (isset($_SESSION['login'])) {
       echo $_SESSION['login'];
       unset($_SESSION['login']);
+    }
+
+    if (isset($_SESSION['no-login'])) {
+      echo $_SESSION['no-login'];
+      unset($_SESSION['no-login']);
     }
     ?>
 

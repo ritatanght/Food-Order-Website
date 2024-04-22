@@ -56,6 +56,8 @@ if (isset($_POST['submit'])) {
 
   if ($count == 1) {
     $_SESSION['login'] = "<p class='flash-message success'>Login Successful</p>";
+    $_SESSION['user'] =  $username;
+
     header("location: /admin/");
   } else {
     $_SESSION['login'] = "<p class='flash-message error'>User or Password did not match</p>";

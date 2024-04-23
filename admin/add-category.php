@@ -64,6 +64,14 @@ if (isset($_POST['submit'])) {
   if (isset($_FILES['image']['name'])) {
     // we need image name, source path and destination path for upload
     $image_name = $_FILES['image']['name'];
+
+    // auto rename our images to avoid same name being replaced
+    $ext = end(explode('.', $image_name));
+    $image_name = "food_category_" . date("YmdHis") . ".$ext";
+
+    echo $image_name;
+    die();
+
     $source_path = $_FILES['image']['tmp_name'];
     $destination_path = "../images/category/{$image_name}";
 

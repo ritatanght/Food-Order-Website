@@ -4,6 +4,12 @@
   <div class="wrapper">
     <h1>Manage Category</h1>
     <br />
+    <?php
+    if (isset($_SESSION['flash'])) {
+      echo $_SESSION['flash'];
+      unset($_SESSION['flash']);
+    }
+    ?>
 
     <a href="/admin/add-category.php" class="btn-primary">Add Category</a>
     <br />

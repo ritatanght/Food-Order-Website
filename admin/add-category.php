@@ -69,9 +69,6 @@ if (isset($_POST['submit'])) {
     $ext = end(explode('.', $image_name));
     $image_name = "food_category_" . date("YmdHis") . ".$ext";
 
-    echo $image_name;
-    die();
-
     $source_path = $_FILES['image']['tmp_name'];
     $destination_path = "../images/category/{$image_name}";
 

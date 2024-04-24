@@ -17,35 +17,55 @@
     <table class="tbl-full">
       <tr>
         <th>S.N.</th>
-        <th>Full Name</th>
-        <th>Username</th>
+        <th>Title</th>
+        <th>Image</th>
+        <th>Featured</th>
+        <th>Active</th>
         <th>Actions</th>
       </tr>
-      <tr>
-        <td>1. </td>
-        <td>Vijay Thapa</td>
-        <td>vijaythapa</td>
-        <td>
-          <a href="#" class="btn-secondary"> Update Admin</a>
-          <a href="#" class="btn-danger">Delete Admin</a>
-        </td>
-      <tr>
-        <td>2. </td>
-        <td>Vijay Thapa</td>
-        <td>vijaythapa</td>
-        <td>
-          <a href="#" class="btn-secondary"> Update Admin</a>
-          <a href="#" class="btn-danger">Delete Admin</a>
-        </td>
-      <tr>
-        <td>3. </td>
-        <td>Vijay Thapa</td>
-        <td>vijaythapa</td>
-        <td>
-          <a href="#" class="btn-secondary"> Update Admin</a>
-          <a href="#" class="btn-danger">Delete Admin</a>
-        </td>
-      </tr>
+
+      <?php
+
+      $res = $conn->execute_query("SELECT * FROM tbl_category");
+      $count = mysqli_num_rows($res);
+
+      if ($count > 0) {
+        $sn = 1;
+        while ($row = mysqli_fetch_assoc($res)) : ?>
+          <tr>
+            <td><?= $sn++ ?>. </td>
+            <td><?= $row['title'] ?></td>
+            <td><?php
+                $image_name = $row['image_name'];
+                if ($image_name == "") {
+                  echo "<p>No image added</p>";
+                } else {
+                ?>
+                <img src="../images/category/<?= $image_name ?>" alt="<?= $row['title'] ?>" width="120px" />
+              <?php
+                }
+              ?>
+            </td>
+            <td><?= $row['featured'] ?></td>
+            <td><?= $row['active'] ?></td>
+            <td>
+              <a href="#" class="btn-secondary">Update Category</a>
+              <a href="#" class="btn-danger">Delete Category</a>
+            </td>
+          </tr>
+        <?php
+        endwhile;
+      } else {
+        ?>
+        <tr>
+          <td colspan="6">
+            <p class="text-center">No Category Added</p>
+          </td>
+        </tr>
+      <?php
+      }
+      ?>
+
     </table>
   </div>
 </div>

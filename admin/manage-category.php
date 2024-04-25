@@ -10,6 +10,7 @@
       unset($_SESSION['flash']);
     }
     ?>
+    <br />
 
     <a href="/admin/add-category.php" class="btn-primary">Add Category</a>
     <br />
@@ -50,7 +51,7 @@
             <td><?= $row['active'] ?></td>
             <td>
               <a href="#" class="btn-secondary">Update Category</a>
-              <a href="#" class="btn-danger">Delete Category</a>
+              <a href="/admin/delete-category.php?id=<?= $row['id'] ?>&image_name=<?= $row['image_name'] ?>" class="btn-danger">Delete Category</a>
             </td>
           </tr>
         <?php

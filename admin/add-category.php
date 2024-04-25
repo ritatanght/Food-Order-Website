@@ -59,9 +59,7 @@ if (isset($_POST['submit'])) {
   extract($_POST);
 
   // check whether the image is selected
-  var_dump($_FILES['image']);
-
-  if (isset($_FILES['image']['name'])) {
+  if ($_FILES['image']['name'] != "") {
     // we need image name, source path and destination path for upload
     $image_name = $_FILES['image']['name'];
 

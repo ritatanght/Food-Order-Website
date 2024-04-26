@@ -50,7 +50,7 @@
             <td><?= $row['featured'] ?></td>
             <td><?= $row['active'] ?></td>
             <td>
-              <a href="#" class="btn-secondary">Update Category</a>
+              <a href="/admin/update-category.php?id=<?= $row['id'] ?>" class="btn-secondary">Update Category</a>
               <a href="/admin/delete-category.php?id=<?= $row['id'] ?>&image_name=<?= $row['image_name'] ?>" class="btn-danger">Delete Category</a>
             </td>
           </tr>

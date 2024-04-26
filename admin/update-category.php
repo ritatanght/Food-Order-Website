@@ -5,9 +5,21 @@
     <h1>Update Category</h1>
 
     <?php
-    if (isset($_SESSION['flash'])) {
-      echo $_SESSION['flash'];
-      unset($_SESSION['flash']);
+    if (isset($_GET['id'])) {
+      $id = $_GET['id'];
+      $res = $conn->execute_query("SELECT * FROM tbl_category WHERE id=?");
+
+      $count = mysqli_num_rows($res);
+      if ($count == 1) {
+        // populate the form
+
+      } else {
+        $_SESSION['flash'] = "<div class='flash-message error'>Category not Found</div>";
+        header("location: /admin/manage-category.php");
+      }
+    } else {
+      // redirect to manage category when id is not set
+      header("location: /admin/manage-category.php");
     }
     ?>
 

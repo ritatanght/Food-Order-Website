@@ -7,12 +7,13 @@
     <?php
     if (isset($_GET['id'])) {
       $id = $_GET['id'];
-      $res = $conn->execute_query("SELECT * FROM tbl_category WHERE id=?");
+      $res = $conn->execute_query("SELECT * FROM tbl_category WHERE id=?", [$id]);
 
       $count = mysqli_num_rows($res);
       if ($count == 1) {
         // populate the form
-
+        $row = mysqli_fetch_assoc($res);
+        extract($row);
       } else {
         $_SESSION['flash'] = "<div class='flash-message error'>Category not Found</div>";
         header("location: /admin/manage-category.php");
@@ -27,13 +28,19 @@
       <table class="tbl-30">
         <tr>
           <td>Title: </td>
-          <td><input type="text" name="title" value="" /></td>
+          <td><input type="text" name="title" value="<?= $title ?>" /></td>
         </tr>
 
         <tr>
           <td>Current Image: </td>
-          <td>
-            Image will be displayed here
+          <td><?php if ($image_name != "") {
+              ?>
+              <img src="../images/category/<?= $image_name ?>" width="150px">
+            <?php
+              } else {
+                echo "<div class='error'>Image Not Added</div>";
+              }
+            ?>
           </td>
         </tr>
 
@@ -47,16 +54,16 @@
         <tr>
           <td>Featured: </td>
           <td>
-            <label><input type="radio" name="featured" value="Yes" /> Yes</label>
-            <label><input type="radio" name="featured" value="No" /> No</label>
+            <label><input type="radio" name="featured" value="Yes" <?= $featured == 'Yes' ? 'checked' : '' ?> /> Yes</label>
+            <label><input type="radio" name="featured" value="No" <?= $featured == 'No' ? 'checked' : '' ?> /> No</label>
           </td>
         </tr>
 
         <tr>
           <td>Active: </td>
           <td>
-            <label><input type="radio" name="active" value="Yes" /> Yes</label>
-            <label><input type="radio" name="active" value="No" /> No</label>
+            <label><input type="radio" name="active" value="Yes" <?= $active == 'Yes' ? 'checked' : '' ?> /> Yes</label>
+            <label><input type="radio" name="active" value="No" <?= $active == 'No' ? 'checked' : '' ?> /> No</label>
           </td>
         </tr>
 

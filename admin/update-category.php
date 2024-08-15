@@ -68,12 +68,86 @@
         </tr>
 
         <tr>
-          <td colspan="2">
+          <td>
+            <input type="hidden" name="current_image" value="<?= $image_name ?>" />
+            <input type="hidden" name="id" value="<?= $id ?>" />
             <input type="submit" name="submit" value="Update Category" class="btn-secondary" />
           </td>
         </tr>
       </table>
     </form>
+
+    <?php
+    if (isset($_POST['submit'])) {
+      // Get all the vales from our form
+      $id = $_POST['id'];
+      $title = $_POST['title'];
+      $current_image = $_POST['current_image'];
+      $featured = $_POST['featured'];
+      $active = $_POST['active'];
+
+      // Update new image if selected
+      // Check whether the image is selected
+      if ($_FILES['image']['name'] != "") {
+        // upload the new image
+        $image_name = $_FILES['image']['name'];
+
+        // auto rename our images to avoid same name being replaced
+        $ext = end(explode('.', $image_name));
+        $image_name = "food_category_" . date("YmdHis") . ".$ext";
+
+        $source_path = $_FILES['image']['tmp_name'];
+        $destination_path = "../images/category/{$image_name}";
+
+
+        $upload = move_uploaded_file($source_path, $destination_path);
+
+
+        // if the image is failed to be uploaded, stop the process and redirect with error message
+        if (!$upload) {
+          $_SESSION['flash'] = "<div class='flash-message error'>Failed to Upload Image</div>";
+          header("location: /admin/manage-category.php");
+          die();
+        }
+
+        // remove the current image
+        $remove_path = "../images/category/" . $current_image;
+        $remove = unlink($remove_path);
+
+        //check whether the image is removed
+        // if failed, then display message and stop the process
+        if (!$remove) {
+          $_SESSION['flash'] = "<div class='flash-message error'>Failed to remove current image</div>";
+          header("location: /admin/manage-category.php");
+          die();
+        }
+      } else {
+        $image_name = $current_image;
+      }
+
+      // Update the database
+      $query = "UPDATE tbl_category SET 
+                    title=?, 
+                    image_name = ?, 
+                    featured = ?, 
+                    active = ?
+                WHERE id=?";
+      $res = $conn->execute_query(
+        $query,
+        [$title, $image_name, $featured, $active, $id]
+      );
+
+      // Redirect to manage category with message
+      if ($res) {
+        // Category Updated
+        $_SESSION['flash'] = "<p class='flash-message success'>Category Updated Successfully</p>";
+        header("location: /admin/manage-category.php");
+      } else {
+        $_SESSION['flash'] = "<p class='flash-message error'>Failed to Update Category</p>";
+        header("location: /admin/add-category.php");
+      }
+    }
+    ?>
 
   </div>
 </div>

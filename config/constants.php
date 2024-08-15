@@ -1,4 +1,5 @@
 <?php
+// Linux command to start server: sudo service mysql start
 
 // Start session
 session_start();
